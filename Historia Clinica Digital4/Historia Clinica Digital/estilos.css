@@ -1,0 +1,665 @@
+/* =========================================================
+   ESTILOS SISTEMA MEDI-SAFCI - DISEÑO MAESTRO UNIFICADO
+   ========================================================= */
+
+:root {
+    --medi-blue: #3457cd;       
+    --medi-cyan: #36b9cc;       /* <-- TU NUEVO COLOR PERSONALIZADO */
+    --medi-cyan-dark: #2a96a6;  /* Tono ligeramente más oscuro para el efecto hover (pasar el ratón) */
+    --medi-bg: #f4f6f9;         
+    --medi-panel-bg: #ffffff;   
+    --medi-input-bg: #f0f2f5;   
+    --text-main: #495057;       
+    --border-soft: #dee2e6;     
+}
+
+body { 
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+    margin: 0; 
+    display: flex; 
+    background-color: var(--medi-bg); 
+    color: var(--text-main); 
+    height: 100vh; 
+}
+
+/* --- BARRA LATERAL --- */
+.sidebar { 
+    width: 270px; 
+    background-color: var(--medi-blue); 
+    color: white; 
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 2px 0 10px rgba(0,0,0,0.15); 
+    flex-shrink: 0; 
+    z-index: 10; 
+}
+.sidebar-header { 
+    padding: 25px 20px; 
+    background-color: rgba(0,0,0,0.05); 
+    border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+.sidebar-logo-text { 
+    font-size: 1.2rem; 
+    margin: 0; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+    font-weight: 800; 
+    text-align: center; 
+}
+.sidebar-menu { 
+    list-style: none; 
+    padding: 15px 0; 
+    margin: 0; 
+    overflow-y: auto;
+}
+.sidebar-category { 
+    padding: 15px 20px 5px 20px; 
+    font-size: 0.75rem; 
+    color: rgba(255,255,255,0.6); 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    letter-spacing: 1px; 
+}
+.sidebar-menu li { 
+    padding: 12px 20px; 
+    cursor: pointer; 
+    transition: background 0.3s; 
+    display: flex; 
+    align-items: center; 
+    font-size: 0.85rem; 
+    font-weight: 500; 
+    text-transform: uppercase; 
+}
+.sidebar-menu li:hover, .sidebar-menu li.active { 
+    background-color: rgba(255,255,255,0.15); 
+    border-left: 4px solid #fff; 
+}
+.sidebar-menu li i { 
+    margin-right: 15px; 
+    font-size: 1.1rem; 
+    opacity: 0.8; 
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.main-content { 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    overflow-y: auto; 
+}
+
+.header { 
+    width: 100%; 
+    background-color: white; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 15px 40px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+    box-sizing: border-box; 
+    margin-bottom: 30px; 
+}
+.main-title { 
+    color: var(--medi-blue); 
+    margin: 0; 
+    font-size: 2.2rem; 
+    font-weight: 800; 
+    letter-spacing: -0.5px; 
+}
+.user-info { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+.user-name { 
+    font-size: 0.85rem; 
+    color: #6c757d; 
+}
+.user-avatar { 
+    width: 35px; 
+    height: 35px; 
+    background-color: var(--medi-input-bg); 
+    border-radius: 50%; 
+    border: 1px solid var(--border-soft); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 1.2rem; 
+}
+
+/* --- HOJA CENTRAL --- */
+.sheet-container { 
+    width: 95%; 
+    max-width: 1100px; 
+    margin-bottom: 50px; 
+    background: white; 
+    padding: 30px 40px; 
+    border-radius: 4px; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06); 
+}
+.nav-volver-container { 
+    text-align: center; 
+    margin-bottom: 5px; 
+}
+.btn-volver-top { 
+    color: var(--medi-cyan); 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+    font-weight: 500; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+.btn-volver-top:hover { 
+    color: var(--medi-blue); 
+    text-decoration: underline; 
+}
+.safci-divider { 
+    border: 0; 
+    border-top: 1px solid #e9ecef; 
+    margin: 15px 0; 
+}
+.sheet-header { 
+    text-align: center; 
+    color: var(--medi-cyan); 
+    margin: 15px 0; 
+    font-size: 1.6rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    border: none; 
+    padding: 0; 
+}
+
+.form-process { 
+    display: none; 
+}
+.form-process.active { 
+    display: block; 
+    animation: fadeIn 0.4s ease-in-out; 
+}
+@keyframes fadeIn { 
+    from { opacity: 0; transform: translateY(-10px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+
+/* --- PANELES --- */
+.safci-panel { 
+    border: 1px solid var(--border-soft); 
+    border-radius: 6px; 
+    margin-bottom: 20px; 
+}
+.safci-panel-header { 
+    background-color: #fdfdfd; 
+    color: var(--medi-cyan); 
+    padding: 12px 20px; 
+    font-size: 0.9rem; 
+    font-weight: bold; 
+    text-transform: uppercase; 
+    border-bottom: 1px solid var(--border-soft); 
+    border-radius: 5px 5px 0 0; 
+}
+.safci-panel-body { 
+    padding: 20px; 
+}
+
+/* --- GRILLAS DE FORMULARIO --- */
+.form-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px 20px; margin-bottom: 15px; }
+.form-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px 20px; margin-bottom: 15px; }
+.form-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px 20px; margin-bottom: 15px; }
+
+/* IMPORTANTE: ESTA CLASE ES CLAVE PARA QUE LOS MICRÓFONOS SE POSICIONEN BIEN */
+.form-group { 
+    display: flex; 
+    flex-direction: column; 
+    position: relative; 
+} 
+
+.full-width { grid-column: 1 / -1; }
+
+label { 
+    font-size: 0.75rem; 
+    color: var(--medi-cyan); 
+    font-weight: bold; 
+    margin-bottom: 6px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+label.required::after { 
+    content: " *"; 
+    color: #dc3545; 
+    font-size: 1rem; 
+    line-height: 0;
+}
+
+input[type="text"], input[type="date"], input[type="number"], input[type="tel"], select { 
+    background-color: var(--medi-input-bg); 
+    border: 1px solid #e4e7ea; 
+    padding: 9px 12px; 
+    border-radius: 4px; 
+    font-size: 0.85rem; 
+    color: var(--text-main); 
+    transition: all 0.2s ease-in-out; 
+    width: 100%; 
+    box-sizing: border-box; 
+    text-transform: uppercase;
+    font-weight: normal; 
+}
+
+/* --- TEXTAREA ESPECÍFICO --- */
+textarea { 
+    background-color: var(--medi-input-bg); 
+    border: 1px solid #e4e7ea; 
+    padding: 9px 12px; 
+    padding-bottom: 35px; /* <-- Aumentado para dar espacio al micrófono */
+    border-radius: 4px; 
+    font-size: 0.85rem; 
+    color: var(--text-main); 
+    transition: all 0.2s ease-in-out; 
+    width: 100%; 
+    box-sizing: border-box; 
+    text-transform: uppercase;
+    font-weight: normal; 
+    resize: vertical; 
+    min-height: 70px; 
+}
+input:focus, textarea:focus, select:focus { 
+    outline: none; 
+    background-color: #fff; 
+    border-color: var(--medi-cyan); 
+    box-shadow: 0 0 0 3px rgba(54, 185, 204, 0.15); 
+}
+input[readonly], input:disabled { 
+    background-color: #f0f2f5; 
+    color: #6c757d; 
+    cursor: default; 
+}
+
+/* --- MICRÓFONO MODERNO (CORREGIDO Y ESTILIZADO) --- */
+.btn-mic { 
+    position: absolute; 
+    bottom: 8px; 
+    right: 8px; 
+    background: #ffffff; /* Fondo blanco para resaltar sobre el input gris */
+    border: 1px solid #dee2e6; 
+    border-radius: 50%;
+    cursor: pointer; 
+    color: #adb5bd; 
+    transition: all 0.3s ease; 
+    padding: 6px; 
+    width: 30px;
+    height: 30px;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    outline: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    z-index: 10; /* <-- Asegura que esté por encima del textarea */
+}
+.btn-mic:hover { 
+    color: var(--medi-cyan); 
+    border-color: var(--medi-cyan);
+    transform: scale(1.1); 
+}
+.btn-mic.recording { 
+    color: #dc3545; 
+    border-color: #dc3545;
+    background-color: #ffeeeb;
+    animation: pulse-mic 1s infinite; 
+} 
+@keyframes pulse-mic { 
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4); } 
+    70% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); } 
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); } 
+}
+
+/* --- BOTÓN HISTORIA CLÍNICA DIGITAL --- */
+.btn-hc-digital { 
+    display: flex; 
+    width: 100%; 
+    border: none; 
+    padding: 0; 
+    border-radius: 4px; 
+    overflow: hidden; 
+    cursor: pointer; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
+    transition: transform 0.2s; 
+}
+.btn-hc-digital:hover { 
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+}
+.hc-icon { 
+    background-color: var(--medi-cyan-dark); 
+    color: white; 
+    padding: 9px 15px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 1.1rem; 
+}
+.hc-text { 
+    background-color: var(--medi-cyan); 
+    color: white; 
+    padding: 9px 15px; 
+    flex: 1; 
+    text-align: left; 
+    font-weight: bold; 
+    font-size: 0.85rem; 
+    display: flex; 
+    align-items: center; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px; 
+}
+
+/* --- WHATSAPP --- */
+.input-action-group { 
+    display: flex; 
+    width: 100%; 
+    align-items: stretch; 
+}
+.input-action-group input[type="tel"] { 
+    border-top-right-radius: 0; 
+    border-bottom-right-radius: 0; 
+    border-right: none; 
+    font-weight: normal !important; 
+}
+.btn-whatsapp-small { 
+    background-color: #fff; 
+    border: 1px solid #e4e7ea; 
+    border-left: none; 
+    border-top-right-radius: 4px; 
+    border-bottom-right-radius: 4px; 
+    color: #25D366; 
+    padding: 0 12px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    transition: all 0.2s; 
+    cursor: pointer; 
+}
+.btn-whatsapp-small:hover { 
+    background-color: #e8f5e9; 
+    color: #128c7e; 
+}
+
+/* --- RADIOS Y CHECKBOXES --- */
+.radio-group, .checkbox-group { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 15px; 
+    margin-top: 5px; 
+}
+.radio-item, .checkbox-item { 
+    display: flex; 
+    align-items: center; 
+    font-size: 0.85rem; 
+    color: var(--text-main); 
+    text-transform: uppercase;
+}
+.radio-item input, .checkbox-item input { 
+    margin-right: 8px; 
+    margin-top: 0; 
+    cursor: pointer; 
+    transform: scale(1.1);
+}
+
+/* --- DIVISORES INTERNOS --- */
+.section-divider { 
+    grid-column: 1 / -1; 
+    background-color: transparent; 
+    border: none; 
+    padding: 15px 0 5px 0; 
+    font-weight: 800; 
+    color: var(--medi-cyan); 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    margin: 10px 0 5px 0; 
+    letter-spacing: 0.5px; 
+}
+
+/* --- BOTONES SUBMIT --- */
+.submit-container { 
+    text-align: center; 
+    margin-top: 20px; 
+    padding-top: 20px; 
+    border-top: 1px solid var(--border-soft);
+}
+.btn-submit { 
+    background-color: var(--medi-cyan); 
+    color: white; 
+    padding: 14px 40px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    box-shadow: 0 4px 10px rgba(54, 185, 204, 0.3); 
+    text-transform: uppercase; 
+}
+.btn-submit:hover { 
+    background-color: var(--medi-cyan-dark); 
+    transform: translateY(-2px); 
+    box-shadow: 0 6px 15px rgba(54, 185, 204, 0.4); 
+}
+
+/* --- SIGNOS VITALES --- */
+.vital-sign-row { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 10px; 
+    margin-top: 5px; 
+    width: 100%; 
+    justify-content: flex-start;
+}
+.vital-sign-item { 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 4px; 
+}
+.vital-sign-item label { 
+    margin-bottom: 0; 
+    font-size: 0.7rem; 
+    text-align: center; 
+    color: var(--text-main); 
+    font-weight: bold;
+}
+.vital-sign-item input { 
+    width: 75px; 
+    text-align: center; 
+    padding: 8px; 
+    font-weight: bold; 
+    color: var(--medi-blue);
+}
+
+/* ==========================================
+   BUSCADOR AUTOCOMPLETADO
+   ========================================== */
+.autocomplete-wrapper { 
+    position: relative; 
+    width: 100%; 
+}
+.autocomplete-input { 
+    width: 100%; 
+    padding-right: 45px; 
+    box-sizing: border-box; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px) center;
+    cursor: text;
+}
+.clear-btn { 
+    position: absolute; 
+    right: 32px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    font-size: 1.2rem; 
+    color: #999; 
+    cursor: pointer; 
+    display: none; 
+    z-index: 5; 
+}
+.clear-btn:hover { color: #dc3545; }
+
+.autocomplete-list { 
+    position: absolute; 
+    top: 100%; 
+    left: 0; 
+    width: 100%; 
+    background: #fff; 
+    border: 1px solid var(--border-soft); 
+    max-height: 250px; 
+    overflow-y: auto; 
+    z-index: 1000; 
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+    border-radius: 4px; 
+    display: none; 
+}
+.autocomplete-list div { 
+    padding: 10px; 
+    border-bottom: 1px solid #eee; 
+    cursor: default; 
+    font-size: 0.8rem; 
+}
+.autocomplete-list div:hover { 
+    background-color: var(--medi-cyan); 
+    color: white; 
+}
+
+/* --- ESTILO SELECT --- */
+select { 
+    appearance: none; 
+    -webkit-appearance: none; 
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23555' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E"); 
+    background-repeat: no-repeat; 
+    background-position: calc(100% - 15px) center; 
+    cursor: pointer; 
+}
+
+/* ==========================================
+   BOTÓN FLOTANTE: EMITIR RESPUESTA (MODERNIZADO)
+   ========================================== */
+.floating-btn-respuesta {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background-color: var(--medi-blue); /* Tu azul corporativo */
+    color: #ffffff;
+    padding: 16px 28px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: bold;
+    box-shadow: 0 6px 20px rgba(52, 87, 205, 0.4); /* Sombra azulada elegante */
+    cursor: pointer;
+    z-index: 9999;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.floating-btn-respuesta:hover {
+    background-color: var(--medi-cyan); /* Cambia a tu cyan al pasar el mouse */
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 25px rgba(54, 185, 204, 0.5); /* Sombra cyan */
+}
+
+/* ==========================================
+   CARGAS DE ARCHIVOS (FILE PREVIEW)
+   ========================================== */
+.file-upload-wrapper {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #e8f4f8;
+    color: var(--medi-cyan);
+    border: 2px dashed var(--medi-cyan);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: all 0.3s;
+    width: 100%;
+    box-sizing: border-box;
+}
+.file-upload-wrapper:hover {
+    background-color: #d1ecf1;
+}
+.file-upload-input {
+    display: none;
+}
+.file-previews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 15px;
+}
+.file-thumb {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+.btn-delete-file {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.7rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.btn-delete-file:hover {
+    background-color: #c82333;
+}
+
+/* =========================================
+   ESTILOS PARA EL BOTÓN "VER RESPUESTA"
+   ========================================= */
+.btn-ver-respuesta {
+    background-color: #28a745; /* Un verde médico/éxito para indicar que hay respuesta */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    margin-top: 15px;
+}
+
+.btn-ver-respuesta:hover {
+    background-color: #218838;
+    box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+.btn-ver-respuesta:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}

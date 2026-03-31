@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISTEMA MEDI-SAFCI</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- BARRA LATERAL (En blanco) -->
+    <nav class="sidebar"></nav>
+
+    <main class="main-content">
+        <header class="header">
+            <h1 class="main-title">SISTEMA MEDI-SAFCI</h1>
+            <div class="user-info"><span class="user-name">Hector Guachalla Viscarra - PERSONAL</span><div class="user-avatar">👤</div></div>
+        </header>
+
+        <div class="sheet-container">
+            <div class="nav-volver-container"><a href="#" class="btn-volver-top" onclick="volverAlSelector()">&lt;- VOLVER</a></div>
+            <hr class="safci-divider"><h2 class="sheet-header">HISTORIA CLÍNICA DIGITAL</h2><hr class="safci-divider" style="margin-bottom: 25px;">
+
+            <form id="form-safci" action="#" method="POST" onsubmit="guardarRegistro(event)" novalidate>
+                
+                <!-- 1.- INFORMACIÓN DE FILIACIÓN -->
+                <div class="safci-panel">
+                    <div class="safci-panel-header">1.- INFORMACIÓN DE FILIACIÓN</div>
+                    <div class="safci-panel-body">
+                        <div class="form-grid-4">
+                            <div class="form-group"><label>CÉDULA DE IDENTIDAD:</label><input type="text" value="15048415" readonly></div>
+                            <div class="form-group"><label>NOMBRES:</label><input type="text" value="LIONEL DAN" readonly></div>
+                            <div class="form-group"><label>PRIMER APELLIDO:</label><input type="text" value="CONDORI" readonly></div>
+                            <div class="form-group"><label>SEGUNDO APELLIDO:</label><input type="text" value="MIRANDA" readonly></div>
+                        </div>
+                        <div class="form-grid-4">
+                            <div class="form-group"><label>GÉNERO:</label><select disabled><option selected>MASCULINO</option></select></div>
+                            <div class="form-group"><label>FECHA DE NACIMIENTO:</label><input type="text" id="paciente-fecha-nac" value="18/04/2011" readonly></div>
+                            <div class="form-group"><label>EDAD:</label><input type="text" id="paciente-edad" value="14" readonly></div>
+                            <div class="form-group"><label style="margin-bottom: 4px;">VER CARPETA FAMILIAR:</label><a href="#" style="color: #4d72de; text-decoration: none; font-size: 0.85rem;">SAFCI/LP-CF-13998/2025</a></div>
+                        </div>
+                        <div class="form-grid-4">
+                            <div class="form-group"><label>ESTADO CIVIL:</label><input type="text" value="SOLTERA (O)" readonly></div>
+                            <div class="form-group"><label>NIVEL DE INSTRUCCIÓN:</label><input type="text" value="PRIMARIA CONCLUIDA" readonly></div>
+                            <div class="form-group"><label>PROFESIÓN:</label><input type="text" value="NO CORRESPONDE" readonly></div>
+                            <div class="form-group"><label>OCUPACIÓN:</label><input type="text" value="ESTUDIANTE" readonly></div>
+                        </div>
+                        <div class="form-grid-4">
+                            <div class="form-group"><label>CONTRIBUYE AL SUSTENTO:</label><input type="text" value="SI" readonly></div>
+                            <div class="form-group"><label>TIPO DE SEGURO:</label><input type="text" value="SUS (SISTEMA ÚNICO DE SALUD)" readonly></div>
+                            <div class="form-group"><label>PERTENECE A PIOC, GAIOC, TIOC:</label><input type="text" value="AYMARA" readonly></div>
+                            <div class="form-group"><label>HISTORIA CLÍNICA:</label><button type="button" class="btn-hc-digital"><span class="hc-icon">📄</span><span class="hc-text">HISTORIA CLÍNICA DIGITAL</span></button></div>
+                        </div>
+                        <div class="form-group">
+                            <label>CELULAR (WHATSAPP):</label>
+                            <div class="input-action-group" style="max-width: 300px;">
+                                <input type="tel" value="67062921">
+                                <a href="https://wa.me/59167062921" target="_blank" class="btn-whatsapp-small"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2.- DATOS DEL PUNTO DE TELESALUD ORIGEN -->
+                <div class="safci-panel">
+                    <div class="safci-panel-header">2.- DATOS DEL PUNTO DE TELESALUD ORIGEN</div>
+                    <div class="safci-panel-body">
+                        <div class="form-grid-3">
+                            <div class="form-group"><label>EESS QUE GENERA EL CASO:</label><input type="text" value="C.S. SAN PEDRO" readonly style="background-color: #fcfcfc;"></div>
+                            <div class="form-group"><label>DEPARTAMENTO:</label><input type="text" value="LA PAZ" readonly style="background-color: #fcfcfc;"></div>
+                            <div class="form-group"><label>DR(A). TELESALUD:</label><input type="text" value="HECTOR GUACHALLA V." readonly style="background-color: #fcfcfc;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SELECTOR DE PROCESO -->
+                <div id="selector-area-inline" style="background-color: #f8fbfd; padding: 25px; border: 1px dashed var(--medi-cyan); border-radius: 6px; margin-bottom: 25px; text-align: center;">
+                    <label for="proceso-select" style="font-size: 1.1rem; color: var(--medi-blue); display: block; margin-bottom: 10px;">SELECCIONE EL TIPO DE PROCESO DE TELESALUD:</label>
+                    <select id="proceso-select" onchange="mostrarFormulario()" style="width: 350px; margin: 0 auto; text-align: center;">
+                        <option value="">- SELECCIONE -</option>
+                        <option value="paneles-teleinterconsulta">TELEINTERCONSULTA</option>
+                        <option value="paneles-teleconsulta">TELECONSULTA</option>
+                        <option value="paneles-telemetria">TELEMETRÍA</option>
+                    </select>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- PANELES DINÁMICOS: TELEINTERCONSULTA       -->
+                <!-- ========================================== -->
+                <div id="paneles-teleinterconsulta" class="form-process">
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">3.- Clasificación de la Atención (Teleinterconsulta)</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-3">
+                                <div class="form-group"><label class="required">Tipo de Teleinterconsulta</label><select required><option value="">-SELECCIONE-</option><option>Nuevo</option><option>Seguimiento</option></select></div>
+                                <div class="form-group"><label class="required">¿Persona con Discapacidad?</label><div class="radio-group"><div class="radio-item"><input type="radio" name="ti_discapacidad" required> Sí</div><div class="radio-item"><input type="radio" name="ti_discapacidad" checked> No</div></div></div>
+                                <div class="form-group full-width"><label class="required">Paciente de Grupo Vulnerable</label>
+                                    <div class="checkbox-group"><div class="checkbox-item"><input type="checkbox"> Ninguna</div><div class="checkbox-item"><input type="checkbox"> Situación de Calle</div><div class="checkbox-item"><input type="checkbox"> Privado de Libertad</div><div class="checkbox-item"><input type="checkbox"> Persona Migrante</div></div>
+                                </div>
+                                <div class="form-group"><label class="required">Captado Por</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>TELESALUD</option><option>CENTRO COORDINADOR DE EMERGENCIAS DPTAL</option><option>MI SALUD</option><option>BJA</option><option>PPMS</option><option>CDVIR</option><option>SEDES</option><option>RÉGIMEN PENITENCIARIO</option><option>OTROS</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">De</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>INSTITUCIONAL</option><option>VISITA COMUNITARIA</option><option>FERIA</option><option>CAMPAÑA</option><option>BRIGADA</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">Captado en</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>CONSULTA MEDICINA GENERAL</option><option>CONSULTA ESPECIALIZADA</option><option>EMERGENCIA</option><option>HOSPITALIZACIÓN</option>
+                                    </select>
+                                </div>
+                                <!-- CONSENTIMIENTO INFORMADO EN SECCIÓN 3 -->
+                                <div class="form-group full-width">
+                                    <label class="required">Consentimiento Informado</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item"><input type="radio" checked required> Sí, aceptado</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">4.- Historia Clínica Digital</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="required">Motivo de Consulta</label>
+                                    <textarea id="ti_motivo" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('ti_motivo')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                                <div></div> <!-- Espacio vacío -->
+                                <div class="form-group full-width">
+                                    <label class="required">Historia de la Enfermedad Actual</label>
+                                    <textarea id="ti_historia" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('ti_historia')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-grid-2" style="margin-top: 20px;">
+                                <div class="form-group"><label class="required">Ant. Personales Patológicos</label><textarea id="ti_ant_pat" required></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_pat')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Ant. Personales No Patológicos</label><textarea id="ti_ant_nopat"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_nopat')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label class="required">Ant. Familiares Patológicos</label><textarea id="ti_ant_fam" required></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_fam')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label class="required">Historia Psicosocial</label><textarea id="ti_ant_psi" required></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_psi')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Antecedentes G-O</label><textarea id="ti_ant_go"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_go')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label class="required">Alergias</label><textarea id="ti_ant_ale" required></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_ale')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label class="required">Vacunas</label><textarea id="ti_ant_vac" required></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ant_vac')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">5.- Examen Físico</div>
+                        <div class="safci-panel-body">
+                            <div class="section-divider" style="margin-top: 0;">Examen Físico General</div>
+                            <div class="form-grid-2">
+                                <div class="form-group"><label>Escala del Dolor</label><input type="text" placeholder="Ej: 5/10"></div>
+                                <div class="form-group"><label>Estado general</label><textarea id="ti_est_gen"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_est_gen')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Piel y Mucosas</label><textarea id="ti_piel"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_piel')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                            </div>
+
+                            <div class="section-divider">Signos Vitales y Medidas</div>
+                            <div class="form-group full-width" style="margin-bottom: 25px;">
+                                <div class="vital-sign-row">
+                                    <div class="vital-sign-item"><label>T° C</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FR rpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FC lpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>PA mmHg</label><input type="text" placeholder="120/80"></div>
+                                    <div class="vital-sign-item"><label>SpO2 %</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>Peso Kg</label><input type="number" id="ti-peso" step="0.1" oninput="calcularIMC('ti-peso','ti-talla','ti-imc')"></div>
+                                    <div class="vital-sign-item"><label>Talla m</label><input type="number" id="ti-talla" step="0.01" oninput="calcularIMC('ti-peso','ti-talla','ti-imc')"></div>
+                                    <div class="vital-sign-item" id="ti-pc"><label>PC cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="ti-pt"><label>PT cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="ti-pab"><label>Pab cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="ti-imc-box"><label>IMC</label><input type="text" id="ti-imc" readonly style="background-color:#e8f5e9;"></div>
+                                </div>
+                            </div>
+
+                            <div class="section-divider">Examen Físico Regional o Segmentario</div>
+                            <div class="form-grid-2">
+                                <div class="form-group"><label>Cabeza</label><textarea id="ti_cabeza"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_cabeza')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Cara</label><textarea id="ti_cara"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_cara')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Ojos</label><textarea id="ti_ojos"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_ojos')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Nariz</label><textarea id="ti_nariz"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_nariz')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Boca</label><textarea id="ti_boca"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_boca')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Oídos</label><textarea id="ti_oidos"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_oidos')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Cuello</label><textarea id="ti_cuello"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_cuello')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Región Axilar</label><textarea id="ti_axilar"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_axilar')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Tórax</label><textarea id="ti_torax"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_torax')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Respiratorio</label><textarea id="ti_respiratorio"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_respiratorio')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Cardiovascular</label><textarea id="ti_cardio"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_cardio')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Mamas</label><textarea id="ti_mamas"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_mamas')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Abdomen</label><textarea id="ti_abdomen"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_abdomen')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Región Inguinocrural</label><textarea id="ti_inguino"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_inguino')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Genito-Urinario</label><textarea id="ti_genito"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_genito')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group"><label>Extremidades</label><textarea id="ti_extremidades"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_extremidades')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                                <div class="form-group full-width"><label>Sistema Nervioso</label><textarea id="ti_nervioso"></textarea><button type="button" class="btn-mic" onclick="iniciarDictado('ti_nervioso')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- PANELES DINÁMICOS: TELECONSULTA            -->
+                <!-- ========================================== -->
+                <div id="paneles-teleconsulta" class="form-process">
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">3.- Clasificación de la Atención (Teleconsulta)</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-3">
+                                <div class="form-group"><label class="required">Tipo Teleconsulta</label><select required><option value="">-SELECCIONE-</option><option>Nuevo</option><option>Seguimiento</option></select></div>
+                                <div class="form-group"><label class="required">¿Persona con Discapacidad?</label><div class="radio-group"><div class="radio-item"><input type="radio" name="tc_discapacidad" required> Sí</div><div class="radio-item"><input type="radio" name="tc_discapacidad" checked> No</div></div></div>
+                                <div class="form-group full-width"><label>Paciente de Grupo Vulnerable</label>
+                                    <div class="checkbox-group"><div class="checkbox-item"><input type="checkbox"> Ninguna</div><div class="checkbox-item"><input type="checkbox"> Situación de Calle</div><div class="checkbox-item"><input type="checkbox"> Privado de Libertad</div><div class="checkbox-item"><input type="checkbox"> Persona Migrante</div></div>
+                                </div>
+                                <div class="form-group"><label class="required">Captado Por</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>TELESALUD</option><option>CENTRO COORDINADOR DE EMERGENCIAS DPTAL</option><option>MI SALUD</option><option>BJA</option><option>PPMS</option><option>CDVIR</option><option>SEDES</option><option>RÉGIMEN PENITENCIARIO</option><option>OTROS</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">De</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>INSTITUCIONAL</option><option>VISITA COMUNITARIA</option><option>FERIA</option><option>CAMPAÑA</option><option>BRIGADA</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">Captado en</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>CONSULTA MEDICINA GENERAL</option><option>CONSULTA ESPECIALIZADA</option><option>EMERGENCIA</option><option>HOSPITALIZACIÓN</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">Vía de Comunicación</label><select required><option value="">-SELECCIONE-</option><option>Plataforma de Videoconferencia</option><option>Telefonía móvil o fija</option><option>Mensajería</option><option>Correo Electrónico</option><option>Otras</option></select></div>
+                                <!-- CONSENTIMIENTO INFORMADO EN SECCIÓN 3 -->
+                                <div class="form-group full-width">
+                                    <label class="required">Consentimiento Informado</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item"><input type="radio" checked required> Sí, aceptado</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">4.- Motivo de la Teleconsulta e Historia</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="required">Motivo de la Teleconsulta</label>
+                                    <textarea id="tc_motivo" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('tc_motivo')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                                <div></div>
+                                <div class="form-group full-width">
+                                    <label class="required">Historia de la enfermedad actual</label>
+                                    <textarea id="tc_historia" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('tc_historia')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">5.- Examen Físico (Signos Vitales)</div>
+                        <div class="safci-panel-body">
+                            <div class="form-group full-width">
+                                <div class="vital-sign-row">
+                                    <div class="vital-sign-item"><label>T° C</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FR rpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FC lpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>PA mmHg</label><input type="text" placeholder="120/80"></div>
+                                    <div class="vital-sign-item"><label>SpO2 %</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>Peso Kg</label><input type="number" id="tc-peso" step="0.1" oninput="calcularIMC('tc-peso','tc-talla','tc-imc')"></div>
+                                    <div class="vital-sign-item"><label>Talla m</label><input type="number" id="tc-talla" step="0.01" oninput="calcularIMC('tc-peso','tc-talla','tc-imc')"></div>
+                                    <div class="vital-sign-item" id="tc-pc"><label>PC cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tc-pt"><label>PT cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tc-pab"><label>Pab cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tc-imc-box"><label>IMC</label><input type="text" id="tc-imc" readonly style="background-color:#e8f5e9;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- PANELES DINÁMICOS: TELEMETRÍA              -->
+                <!-- ========================================== -->
+                <div id="paneles-telemetria" class="form-process">
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">3.- Clasificación (Telemetría)</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-3">
+                                <div class="form-group"><label class="required">Tipo de Telemetría</label><select required><option value="">-SELECCIONE-</option><option>Nuevo</option><option>Seguimiento</option></select></div>
+                                <div class="form-group"><label class="required">¿Persona con Discapacidad?</label><div class="radio-group"><div class="radio-item"><input type="radio" name="tm_discapacidad" required> Sí</div><div class="radio-item"><input type="radio" name="tm_discapacidad" checked> No</div></div></div>
+                                <div class="form-group full-width"><label>Paciente de Grupo Vulnerable</label>
+                                    <div class="checkbox-group"><div class="checkbox-item"><input type="checkbox"> Ninguna</div><div class="checkbox-item"><input type="checkbox"> Situación de Calle</div><div class="checkbox-item"><input type="checkbox"> Privado de Libertad</div><div class="checkbox-item"><input type="checkbox"> Persona Migrante</div></div>
+                                </div>
+                                <div class="form-group"><label class="required">Captado Por</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>TELESALUD</option><option>CENTRO COORDINADOR DE EMERGENCIAS DPTAL</option><option>MI SALUD</option><option>BJA</option><option>PPMS</option><option>CDVIR</option><option>SEDES</option><option>RÉGIMEN PENITENCIARIO</option><option>OTROS</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">De</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>INSTITUCIONAL</option><option>VISITA COMUNITARIA</option><option>FERIA</option><option>CAMPAÑA</option><option>BRIGADA</option>
+                                    </select>
+                                </div>
+                                <div class="form-group"><label class="required">Captado en</label>
+                                    <select required>
+                                        <option value="">-SELECCIONE-</option><option>CONSULTA MEDICINA GENERAL</option><option>CONSULTA ESPECIALIZADA</option><option>EMERGENCIA</option><option>HOSPITALIZACIÓN</option>
+                                    </select>
+                                </div>
+                                <!-- CONSENTIMIENTO INFORMADO EN SECCIÓN 3 -->
+                                <div class="form-group full-width">
+                                    <label class="required">Consentimiento Informado</label>
+                                    <div class="radio-group">
+                                        <div class="radio-item"><input type="radio" checked required> Sí, aceptado</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">4.- Motivo de la Telemetría e Historia</div>
+                        <div class="safci-panel-body">
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label class="required">Motivo de Consulta</label>
+                                    <textarea id="tm_motivo" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('tm_motivo')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                                <div></div>
+                                <div class="form-group full-width">
+                                    <label class="required">Historia de la enfermedad actual</label>
+                                    <textarea id="tm_historia" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('tm_historia')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">5.- Examen Físico (Signos Vitales)</div>
+                        <div class="safci-panel-body">
+                            <div class="form-group full-width">
+                                <div class="vital-sign-row">
+                                    <div class="vital-sign-item"><label>T° C</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FR rpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>FC lpm</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>PA mmHg</label><input type="text" placeholder="120/80"></div>
+                                    <div class="vital-sign-item"><label>SpO2 %</label><input type="number"></div>
+                                    <div class="vital-sign-item"><label>Peso Kg</label><input type="number" id="tm-peso" step="0.1" oninput="calcularIMC('tm-peso','tm-talla','tm-imc')"></div>
+                                    <div class="vital-sign-item"><label>Talla m</label><input type="number" id="tm-talla" step="0.01" oninput="calcularIMC('tm-peso','tm-talla','tm-imc')"></div>
+                                    <div class="vital-sign-item" id="tm-pc"><label>PC cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tm-pt"><label>PT cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tm-pab"><label>Pab cm</label><input type="text"></div>
+                                    <div class="vital-sign-item" id="tm-imc-box"><label>IMC</label><input type="text" id="tm-imc" readonly style="background-color:#e8f5e9;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ========================================== -->
+                <!-- PANELES COMPARTIDOS FINALES                -->
+                <!-- ========================================== -->
+                <div id="paneles-comunes-inferiores" class="form-process">
+                    
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">6.- IMPRESIÓN DIAGNÓSTICA</div>
+                        <div class="safci-panel-body">
+                            <div class="form-group full-width" style="margin-bottom: 15px;">
+                                <label class="required">DIAGNÓSTICO I</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="global-diag1-input" class="autocomplete-input" placeholder="Buscar código o enfermedad..." required autocomplete="off">
+                                    <span class="clear-btn" onclick="limpiarBuscador('global-diag1-input')">&times;</span>
+                                    <div id="global-diag1-list" class="autocomplete-list"></div>
+                                </div>
+                            </div>
+                            <div class="form-group full-width" style="margin-bottom: 15px;">
+                                <label>DIAGNÓSTICO II</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="global-diag2-input" class="autocomplete-input" placeholder="Buscar código o enfermedad..." autocomplete="off">
+                                    <span class="clear-btn" onclick="limpiarBuscador('global-diag2-input')">&times;</span>
+                                    <div id="global-diag2-list" class="autocomplete-list"></div>
+                                </div>
+                            </div>
+                            <div class="form-group full-width" style="margin-bottom: 15px;">
+                                <label>DIAGNÓSTICO III</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="global-diag3-input" class="autocomplete-input" placeholder="Buscar código o enfermedad..." autocomplete="off">
+                                    <span class="clear-btn" onclick="limpiarBuscador('global-diag3-input')">&times;</span>
+                                    <div id="global-diag3-list" class="autocomplete-list"></div>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label>DIAGNÓSTICO IV</label>
+                                <div class="autocomplete-wrapper">
+                                    <input type="text" id="global-diag4-input" class="autocomplete-input" placeholder="Buscar código o enfermedad..." autocomplete="off">
+                                    <span class="clear-btn" onclick="limpiarBuscador('global-diag4-input')">&times;</span>
+                                    <div id="global-diag4-list" class="autocomplete-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ESTUDIOS COMPLEMENTARIOS Y CONDUCTA CON "TELEMETRÍA REALIZADA" INTEGRADA -->
+                    <div class="safci-panel">
+                        <div class="safci-panel-header" id="titulo-estudios-conducta">7.- ESTUDIOS COMPLEMENTARIOS Y CONDUCTA</div>
+                        <div class="safci-panel-body">
+                            
+                            <!-- NUEVA UBICACIÓN DE TELEMETRÍA REALIZADA -->
+                            <div class="form-group full-width" style="margin-bottom: 15px;">
+                                <label class="required">Telemetría Realizada (Selección Múltiple)</label>
+                                <div class="checkbox-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                                    <div class="checkbox-item"><input type="checkbox"> Monitor Multiparamétrico básico</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Monitor de Signos Vitales</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Electrocardiógrafo</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Sonda de Ultrasonido</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Ecógrafo</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Otoscopio</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Cámara Examen General</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Video-Colposcopio</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Estetoscopio Digital</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Espirómetro Digital</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Oftalmoscopio</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Glucómetro</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Monitor Materno Fetal</div>
+                                    <div class="checkbox-item"><input type="checkbox"> Ninguna</div>
+                                </div>
+                            </div>
+                            <div class="form-group full-width" style="margin-bottom: 25px;">
+                                <label>Si marcó otros mencione cual</label>
+                                <input type="text" placeholder="Termómetro digital, etc.">
+                            </div>
+
+                            <div class="form-grid-2">
+                                <div class="form-group">
+                                    <label>Exámenes Complementarios o de Gabinete</label>
+                                    <textarea id="global_examenes"></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('global_examenes')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                                <div class="form-group">
+                                    <label class="required" id="label-tratamiento-comentario">Tratamiento</label>
+                                    <textarea id="global_tratamiento" required></textarea>
+                                    <button type="button" class="btn-mic" onclick="iniciarDictado('global_tratamiento')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/><path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="panel8-ti" style="display: none;">
+                        <div class="safci-panel">
+                            <div class="safci-panel-header">8.- Destino de la Interconsulta</div>
+                            <div class="safci-panel-body">
+                                <div class="form-grid-3">
+                                    <div class="form-group"><label class="required">Especialidad o Área</label><select required><option value="">-SELECCIONE-</option><option>Telediagnóstico Médico</option><option>Telediscusión</option><option>Teleemergencia</option></select></div>
+                                    <div class="form-group"><label class="required">Tipo de atención</label><select required><option value="">-SELECCIONE-</option><option>Atención en Sitio</option><option>Referencia</option><option>Contrarreferencia</option><option>Transferencia</option></select></div>
+                                    <div class="form-group"><label class="required">Teleinterconsulta en tiempo</label><select required><option value="">-SELECCIONE-</option><option>Real</option><option>Diferido</option></select></div>
+                                    <div class="form-group full-width">
+                                        <label class="required">Establecimiento Destino</label>
+                                        <div class="autocomplete-wrapper">
+                                            <input type="text" id="ti-eess-destino" class="autocomplete-input" placeholder="Escriba el EESS..." required autocomplete="off">
+                                            <span class="clear-btn" onclick="limpiarBuscador('ti-eess-destino')">&times;</span>
+                                            <div id="ti-eess-destino-list" class="autocomplete-list"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label class="required">Especialidad solicitada</label>
+                                        <div class="autocomplete-wrapper">
+                                            <input type="text" id="ti-esp-dest" class="autocomplete-input" placeholder="Escriba la especialidad..." required autocomplete="off">
+                                            <span class="clear-btn" onclick="limpiarBuscador('ti-esp-dest')">&times;</span>
+                                            <div id="ti-esp-dest-list" class="autocomplete-list"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="panel8-tc" style="display: none;">
+                        <div class="safci-panel">
+                            <div class="safci-panel-header">8.- Especialidad y Cierre de Teleconsulta</div>
+                            <div class="safci-panel-body">
+                                <div class="form-grid-3">
+                                    <div class="form-group full-width">
+                                        <label class="required">Especialidad o área de Teleconsulta</label>
+                                        <div class="autocomplete-wrapper">
+                                            <input type="text" id="tc-especialidad" class="autocomplete-input" value="MEDICINA GENERAL" required autocomplete="off">
+                                            <span class="clear-btn" onclick="limpiarBuscador('tc-especialidad')">&times;</span>
+                                            <div id="tc-especialidad-list" class="autocomplete-list"></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group full-width"><label>Subespecialidad</label><input type="text" placeholder="Llenado libre..."></div>
+                                    <div class="form-group"><label class="required">Tiempo</label><select required><option value="">-SELECCIONE-</option><option>Real</option><option>Diferido</option></select></div>
+                                    <div class="form-group"><label class="required">Tipo de Atención</label><select required><option value="">-SELECCIONE-</option><option>Atención en Sitio</option><option>Referencia</option><option>Contrarreferencia</option><option>Alta</option></select></div>
+                                    <div class="form-group"><label>Fecha Consulta de Seguimiento</label><input type="date"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="safci-panel">
+                        <div class="safci-panel-header">9.- MULTIMEDIA Y ARCHIVOS ADJUNTOS</div>
+                        <div class="safci-panel-body">
+                            <div class="form-group full-width">
+                                <label class="file-upload-wrapper">
+                                    <span style="font-size: 1.2rem;">➕</span> AÑADIR IMAGEN/VIDEO/AUDIO/ARCHIVO
+                                    <input type="file" class="file-upload-input" multiple accept="image/*,video/*,audio/*,.pdf,.doc,.docx" onchange="mostrarNombresArchivos(this, 'global-files')">
+                                </label>
+                                <div id="global-files" class="file-previews-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="submit-container">
+                        <button type="submit" class="btn-submit">GUARDAR REGISTRO</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <!-- BOTÓN FLOTANTE PARA EMITIR RESPUESTA (Conectado a respuesta_especialista.html) -->
+    <button id="btn-flotante-respuesta" class="floating-btn-respuesta" style="display: none;" onclick="window.location.href='respuesta_especialista.html'">
+        💬 EMITIR RESPUESTA
+    </button>
+
+    <script src="funciones.js"></script>
+
+    <!-- Script automático para cambiar título de Conducta/Comentario según el proceso -->
+    <script>
+        document.getElementById('proceso-select').addEventListener('change', function() {
+            var seleccion = this.value;
+            var tituloPanel = document.getElementById('titulo-estudios-conducta');
+            var labelText = document.getElementById('label-tratamiento-comentario');
+            
+            // Lógica para mostrar/ocultar los paneles 8 según el proceso
+            var panel8ti = document.getElementById('panel8-ti');
+            var panel8tc = document.getElementById('panel8-tc');
+            if(panel8ti) panel8ti.style.display = 'none';
+            if(panel8tc) panel8tc.style.display = 'none';
+            
+            if(seleccion === 'paneles-teleinterconsulta' && panel8ti) panel8ti.style.display = 'block';
+            if(seleccion === 'paneles-teleconsulta' && panel8tc) panel8tc.style.display = 'block';
+
+            if(tituloPanel && labelText) {
+                if(seleccion === 'paneles-telemetria') {
+                    tituloPanel.innerText = '7.- ESTUDIOS COMPLEMENTARIOS Y COMENTARIOS';
+                    labelText.innerText = 'Comentarios';
+                } else {
+                    tituloPanel.innerText = '7.- ESTUDIOS COMPLEMENTARIOS Y CONDUCTA';
+                    labelText.innerText = 'Tratamiento';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
